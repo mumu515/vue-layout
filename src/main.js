@@ -1,8 +1,14 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
+import components from "./utils/components/index";
+import "./plugins/element-ui";
 
-Vue.config.productionTip = false
+Object.keys(components).forEach((key) => {
+	Vue.component(key, components[key]);
+});
 
+let a = require("./index");
+console.log(a);
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+	render: h => h(App)
+}).$mount("#app");
