@@ -1,7 +1,11 @@
 {
 	"name": "vue-layout",
 	"version": "0.1.0",
-	"private": true,
+	"private": false,
+	"repository": {
+		"type": "git",
+		"url": "git@github.com/mumu515/vue-layout.git"
+	},
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
@@ -40,10 +44,6 @@
 		"mumu",
 		"components"
 	],
-	"repository": {
-		"type": "git",
-		"url": "git@github.com/mumu515/vue-layout.git"
-	},
 	"postcss": {
 		"plugins": {
 			"autoprefixer": {}
