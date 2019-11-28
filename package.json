@@ -40,6 +40,10 @@
 		"mumu",
 		"components"
 	],
+	"repository": {
+		"type": "git",
+		"url": "git@github.com/mumu515/vue-layout.git"
+	},
 	"postcss": {
 		"plugins": {
 			"autoprefixer": {}
