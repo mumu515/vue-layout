@@ -35,6 +35,11 @@
 		"types"
 	],
 	"main": "index.js",
+	"keywords": [
+		"vue-layout",
+		"mumu",
+		"components"
+	],
 	"postcss": {
 		"plugins": {
 			"autoprefixer": {}
