@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<y-button>123</y-button>
+		<y-button>11665565665651123</y-button>
 
 	</div>
 </template>

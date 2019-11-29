@@ -1,14 +1,12 @@
 import Vue from "vue";
 import App from "./App.vue";
-import components from "./utils/components/index";
-import "./plugins/element-ui";
+import components from "../utils/components/index";
+import "../plugins/element-ui";
 
 Object.keys(components).forEach((key) => {
 	Vue.component(key, components[key]);
 });
 
-let a = require("./index");
-console.log(a);
 new Vue({
 	render: h => h(App)
 }).$mount("#app");
