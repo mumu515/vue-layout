@@ -1,11 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
-import components from "../utils/components/index";
 import "../plugins/element-ui";
-
-Object.keys(components).forEach((key) => {
-	Vue.component(key, components[key]);
-});
+import VueLayout from "../../index"
 
 new Vue({
 	render: h => h(App)
