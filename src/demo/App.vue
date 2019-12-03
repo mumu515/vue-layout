@@ -1,12 +1,32 @@
 <template>
 	<div id="app">
-		<y-button>y-button</y-button>
-
+		<y-page
+				:layout="testLayout"
+				:scopes="testScopes"></y-page>
 	</div>
 </template>
 <script>
 	export default {
-		name: "app"
+		name: "app",
+		data() {
+			return {
+				testScopes: [
+					{
+						scopeId: "1",
+						data: {}
+					}],
+				testLayout: {
+					scopeId: "1",
+					nodeType: "el-container",
+					props: {direction: "vertical"},
+					children: [
+						{
+							nodeType: "y-button",
+							innerHTML: "y-button"
+						}]
+				}
+			};
+		}
 	};
 </script>
 <style>
