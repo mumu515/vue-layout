@@ -1,6 +1,6 @@
 {
-	"name": "vueJsonLayout",
-	"version": "1.0.1",
+	"name": "vue-json-layout",
+	"version": "1.0.2",
 	"private": false,
 	"repository": {
 		"type": "git",
@@ -28,14 +28,18 @@
 	"dependencies": {
 		"esprima": "^4.0.1",
 		"jsonpath": "^1.0.2",
-		"vue": "^2.5.17",
-		"element-ui": "^2.13.0",
-		"vuex": "^3.0.1",
 		"js-cookie": "2.2.0",
 		"axios": "0.17.1",
-		"es6-promise": "^4.2.4"
+		"es6-promise": "^4.2.4",
+		"vue": "^2.5.17",
+		"element-ui": "^2.13.0",
+		"vuex": "^3.0.1"
 	},
-	"peerDependencies": {},
+	"peerDependencies": {
+		"vue": "^2.5.17",
+		"element-ui": "^2.13.0",
+		"vuex": "^3.0.1"
+	},
 	"devDependencies": {
 		"autoprefixer": "^7.1.2",
 		"babel-core": "^6.22.1",

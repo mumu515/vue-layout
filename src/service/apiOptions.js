@@ -1,5 +1,7 @@
 import Vue from "vue";
 import {getCookieByQuery} from "@/utils/auth";
+import localStorage from "@/utils/localstorage";
+
 
 export const ApiOptions = {
 	get: {
@@ -56,14 +58,14 @@ export const ApiOptions = {
 		updateMetaDataTypes: async () => {
 			let tenantId = getCookieByQuery("tenantId");
 			let result;
-			let codes = Vue._localStorage.fetch("metaDataTypes_" + tenantId).codes;
+			let codes = localStorage.fetch("metaDataTypes_" + tenantId).codes;
 			if (codes && codes.length > 0) {
 				result = codes;
 			} else {
 				let data = (await ApiOptions.get.meta_codes("")).data;
 				console.log("meta_codes:");
 				console.log(data);
-				Vue._localStorage.save("metaDataTypes_" + tenantId, data);
+				localStorage.save("metaDataTypes_" + tenantId, data);
 				result = data.codes;
 			}
 			return result;
@@ -71,12 +73,12 @@ export const ApiOptions = {
 		updateMetaData: async (objectCode) => {
 			let tenantId = getCookieByQuery("tenantId");
 			let result;
-			let local = Vue._localStorage.fetch(`metaData_${objectCode}_${tenantId}`).field;
+			let local = localStorage.fetch(`metaData_${objectCode}_${tenantId}`).field;
 			if (local) {
 				result = local;
 			} else {
 				let data = (await ApiOptions.get.meta_object(objectCode)).data;
-				Vue._localStorage.save(`metaData_${objectCode}_${tenantId}`, data);
+				localStorage.save(`metaData_${objectCode}_${tenantId}`, data);
 				result = data.field;
 			}
 			return result;

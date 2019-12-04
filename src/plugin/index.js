@@ -1,6 +1,5 @@
 import "@/utils/typeJudge";
 import "@/utils/jsAddFun";
-import localStorage from "@/utils/localstorage";
 import {fetch, mdelete, post, put} from "@/service/myHttp";
 
 let components = {};
@@ -24,7 +23,6 @@ vueJsonLayout.install = function(Vue, options = {}) {
 		POST: post,
 		PUT: put
 	};
-	Vue._localStorage = localStorage;
 	Object.keys(components).forEach((key) => {
 		Vue.component(key, components[key]);
 	});
