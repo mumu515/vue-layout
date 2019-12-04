@@ -1,11 +1,7 @@
-import {layout} from "@/store/layout/index";
 import Cookies from "js-cookie";
-import Vue from "vue";
-import Vuex from "vuex";
+import {layout} from "@/store/layout/index";
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default {
 	namespaced: true,
 	state: {
 		base: {
@@ -58,4 +54,4 @@ export default new Vuex.Store({
 			state.base[field] = {...state.base[field], ...data};
 		}
 	}
-});
+}

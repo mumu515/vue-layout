@@ -3,7 +3,7 @@ import "@/plugin/json-layout";
 
 import App from "./App.vue";
 import "@/plugin/element";
-import store from "@/store/index";
+import store from "@/demo/store";
 
 new Vue({
 	store,

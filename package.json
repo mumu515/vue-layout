@@ -1,6 +1,6 @@
 {
 	"name": "vue-json-layout",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"private": false,
 	"repository": {
 		"type": "git",
@@ -31,11 +31,7 @@
 		"jsonpath": "^1.0.2",
 		"js-cookie": "2.2.0",
 		"axios": "0.17.1",
-		"es6-promise": "^4.2.4",
-		"vue": "^2.5.17",
-		"element-ui": "^2.13.0",
-		"vuex": "^3.0.1",
-		"vue-router": "3.0.1"
+		"es6-promise": "^4.2.4"
 	},
 	"peerDependencies": {
 		"vue": "^2.5.17",

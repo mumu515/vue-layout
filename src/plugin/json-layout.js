@@ -1,12 +1,10 @@
 // import components from "../../dist/vueJsonLayout";
 import Vue from "vue";
 import components from "@/plugin/index";
-// import components from "../../dist/vueJsonLayout";
-import {CONSTANTS} from "@/utils/constants";
-
 import request from "@/service/gatewayRequest";
-
+import store from "@/demo/store";
+// import components from "../../dist/vueJsonLayout";
 Vue.use(components, {
-	CONSTANTS,
 	request,
+	store
 });

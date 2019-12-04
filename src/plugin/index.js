@@ -1,30 +1,26 @@
 import "@/utils/typeJudge";
 import "@/utils/jsAddFun";
 import {fetch, mdelete, post, put} from "@/service/myHttp";
+import request from "@/service/gatewayRequest";
+import store from "@/store";
+import components from "@/components";
 
-let components = {};
-const requireComponent = require.context(
-		"../components",		// 其组件目录的相对路径
-		true, // 是否查询其子目录
-		/.*(\/).+(\/index\.js)$/ // 匹配基础组件文件名的正则表达式
-);
-requireComponent.keys().forEach((fileName) => {
-	const componentConfig = requireComponent(fileName);	// 获取组件配置
-	components[componentConfig.default.name] = componentConfig.default;
-});
 
 let vueJsonLayout = {};
 vueJsonLayout.install = function(Vue, options = {}) {
-	console.log(options);
-	Vue.prototype.$JSONLayoutConfig = options;
+	console.log(Vue.prototype);
+	Vue.prototype.$JSONLayoutConfig = {};
+	Vue.prototype.$JSONLayoutConfig.request = options.request || request;
+	Vue.prototype.$JSONLayoutConfig.CONSTANTS = {API_PATH: options.API};
 	Vue.prototype.$JSONLayoutConfig.HTTP = options.HTTP || {
 		GET: fetch,
 		DELETE: mdelete,
 		POST: post,
 		PUT: put
 	};
-	Object.keys(components).forEach((key) => {
-		Vue.component(key, components[key]);
-	});
+	Object.keys(components).forEach((key) => {Vue.component(key, components[key]);});
+	
+	Vue.prototype.$JSONLayoutConfig.store = options.store;
+	Vue.prototype.$JSONLayoutConfig.store.registerModule("corehr", store);
 };
 export default vueJsonLayout;

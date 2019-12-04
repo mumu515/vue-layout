@@ -1,7 +1,15 @@
 import Vue from "vue";
 import {getCookieByQuery} from "@/utils/auth";
 import localStorage from "@/utils/localstorage";
+import {CONSTANTS} from "@/utils/constants";
+import {fetch, mdelete, post, put} from "@/service/myHttp";
 
+let HTTP = {
+	GET: fetch,
+	DELETE: mdelete,
+	POST: post,
+	PUT: put
+};
 export const ApiOptions = {
 	get: {
 		biz: ({objectCode = "", instanceId = ""},
@@ -9,25 +17,25 @@ export const ApiOptions = {
 						depth: -1,
 						asOfDate: "",
 						uniqueKey: ""
-					}) => Vue.prototype.$JSONLayoutConfig.HTTP.GET(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.get.biz.replace("${objectCode}", objectCode).replace("${instanceId}", instanceId), param),
+					}) => HTTP.GET(CONSTANTS.URLS.get.biz.replace("${objectCode}", objectCode).replace("${instanceId}", instanceId), param),
 		biz_choiceList: ({listInstanceId = ""},
-										 {asOfDate}) => Vue.prototype.$JSONLayoutConfig.HTTP.GET(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.get.biz_choiceList.replace("${listInstanceId}", listInstanceId), {asOfDate}),
-		biz_tree: ({objectCode = "", guid = ""}) => Vue.prototype.$JSONLayoutConfig.HTTP.GET(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.get.biz_tree.replace("${objectCode}", objectCode).replace("${guid}", guid), {}),
-		meta_codes: (objectCode = "") => Vue.prototype.$JSONLayoutConfig.HTTP.GET(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.get.meta_codes.replace("${objectCode}", objectCode), {}),
-		meta_object: (objectCode = "") => Vue.prototype.$JSONLayoutConfig.HTTP.GET(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.get.meta_object.replace("${objectCode}", objectCode), {}),
-		meta_Reload: () => Vue.prototype.$JSONLayoutConfig.HTTP.GET(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.get.meta_Reload, {})
+										 {asOfDate}) => HTTP.GET(CONSTANTS.URLS.get.biz_choiceList.replace("${listInstanceId}", listInstanceId), {asOfDate}),
+		biz_tree: ({objectCode = "", guid = ""}) => HTTP.GET(CONSTANTS.URLS.get.biz_tree.replace("${objectCode}", objectCode).replace("${guid}", guid), {}),
+		meta_codes: (objectCode = "") => HTTP.GET(CONSTANTS.URLS.get.meta_codes.replace("${objectCode}", objectCode), {}),
+		meta_object: (objectCode = "") => HTTP.GET(CONSTANTS.URLS.get.meta_object.replace("${objectCode}", objectCode), {}),
+		meta_Reload: () => HTTP.GET(CONSTANTS.URLS.get.meta_Reload, {})
 	},
 	post: {
 		biz_child: ({childObjectCode = "", parentObjectCode = ""},
-								param = {}) => Vue.prototype.$JSONLayoutConfig.HTTp.POST(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.post.biz_child.replace("${childObjectCode}", childObjectCode).replace("${parentObjectCode}", parentObjectCode), param),
+								param = {}) => HTTP.POST(CONSTANTS.URLS.post.biz_child.replace("${childObjectCode}", childObjectCode).replace("${parentObjectCode}", parentObjectCode), param),
 		biz: (objectCode = "",
-					param = {}) => Vue.prototype.$JSONLayoutConfig.HTTp.POST(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.post.biz.replace("${objectCode}", objectCode), param),
+					param = {}) => HTTP.POST(CONSTANTS.URLS.post.biz.replace("${objectCode}", objectCode), param),
 		biz_search: (objectCode = "",
 								 data = {},
 								 {page = 1, pageSize = 10, asOfDate, depth} = {
 									 page: 1,
 									 pageSize: 10
-								 }) => Vue.prototype.$JSONLayoutConfig.HTTp.POST(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.post.biz_search.replace("${objectCode}", objectCode), data, {
+								 }) => HTTP.POST(CONSTANTS.URLS.post.biz_search.replace("${objectCode}", objectCode), data, {
 			params: {
 				page,
 				pageSize,
@@ -36,26 +44,26 @@ export const ApiOptions = {
 			}
 		}),
 		biz_list: ({objectCode = ""},
-							 param = {}) => Vue.prototype.$JSONLayoutConfig.HTTp.POST(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.post.biz_list.replace("${objectCode}", objectCode), param),
+							 param = {}) => HTTP.POST(CONSTANTS.URLS.post.biz_list.replace("${objectCode}", objectCode), param),
 		biz_tree_child: ({childObjectCode = "", parentObjectCode = ""},
-										 param = {}) => Vue.prototype.$JSONLayoutConfig.HTTp.POST(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.post.biz_tree_child.replace("${childObjectCode}", childObjectCode).replace("${parentObjectCode}", parentObjectCode), param),
+										 param = {}) => HTTP.POST(CONSTANTS.URLS.post.biz_tree_child.replace("${childObjectCode}", childObjectCode).replace("${parentObjectCode}", parentObjectCode), param),
 		biz_tree: ({objectCode = ""},
-							 param = {}) => Vue.prototype.$JSONLayoutConfig.HTTp.POST(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.post.biz_tree.replace("${objectCode}", objectCode), param)
+							 param = {}) => HTTP.POST(CONSTANTS.URLS.post.biz_tree.replace("${objectCode}", objectCode), param)
 	},
 	put: {
 		biz: (objectCode = "",
-					param = {}) => Vue.prototype.$JSONLayoutConfig.HTTP.PUT(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.put.biz.replace("${objectCode}", objectCode), param),
+					param = {}) => HTTP.PUT(CONSTANTS.URLS.put.biz.replace("${objectCode}", objectCode), param),
 		biz_tree: ({objectCode = ""},
-							 param = {}) => Vue.prototype.$JSONLayoutConfig.HTTp.POST(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.put.biz_tree.replace("${objectCode}", objectCode), param)
+							 param = {}) => HTTP.POST(CONSTANTS.URLS.put.biz_tree.replace("${objectCode}", objectCode), param)
 	},
 	delete: {
 		biz_child: ({childObjectCode = "", parentObjectCode = ""},
-								param = {}) => Vue.prototype.$JSONLayoutConfig.HTTp.DELETE(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.delete.biz_child.replace("${childObjectCode}", childObjectCode).replace("${parentObjectCode}", parentObjectCode), param),
+								param = {}) => HTTP.DELETE(CONSTANTS.URLS.delete.biz_child.replace("${childObjectCode}", childObjectCode).replace("${parentObjectCode}", parentObjectCode), param),
 		biz: ({objectCode = "", instanceId = ""},
-					param = {uniqueKey: ""}) => Vue.prototype.$JSONLayoutConfig.HTTp.DELETE(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.delete.biz.replace("${objectCode}", objectCode).replace("${instanceId}", instanceId), param),
+					param = {uniqueKey: ""}) => HTTP.DELETE(CONSTANTS.URLS.delete.biz.replace("${objectCode}", objectCode).replace("${instanceId}", instanceId), param),
 		biz_tree_child: ({childObjectCode = "", parentObjectCode = ""},
-										 param = {}) => Vue.prototype.$JSONLayoutConfig.HTTp.DELETE(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.delete.biz_tree_child.replace("${childObjectCode}", childObjectCode).replace("${parentObjectCode}", parentObjectCode), param),
-		biz_tree: ({objectCode = "", guid = ""}) => Vue.prototype.$JSONLayoutConfig.HTTp.DELETE(Vue.prototype.$JSONLayoutConfig.CONSTANTS.URLS.delete.biz_tree.replace("${objectCode}", objectCode).replace("${guid}", guid), {})
+										 param = {}) => HTTP.DELETE(CONSTANTS.URLS.delete.biz_tree_child.replace("${childObjectCode}", childObjectCode).replace("${parentObjectCode}", parentObjectCode), param),
+		biz_tree: ({objectCode = "", guid = ""}) => HTTP.DELETE(CONSTANTS.URLS.delete.biz_tree.replace("${objectCode}", objectCode).replace("${guid}", guid), {})
 	},
 	custom: {
 		updateMetaDataTypes: async () => {

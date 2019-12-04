@@ -292,7 +292,7 @@ const YScope = {//配合layout使用
 				async apiRequest(apiConfig, resultScope) {
 					// console.log("apiRequest");
 					// console.log({apiConfig});
-					let response = await Vue.prototype.$JSONLayoutConfig.HTTP[apiConfig.type](apiConfig.url, undefined, {
+					let response = await this.$JSONLayoutConfig.HTTP[apiConfig.type](apiConfig.url, undefined, {
 						params: apiConfig.params,
 						headers: apiConfig.headers,
 						data: apiConfig.data

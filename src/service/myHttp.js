@@ -1,9 +1,10 @@
-import store from "@/store";
 import Vue from "vue";
+
+console.log(Vue.prototype);
 
 const ENV_NOW = process.env;
 const headers = (config = {}) => {
-	let httpHeaders = store.getters["httpHeaders"]();
+	let httpHeaders = Vue.prototype.$JSONLayoutConfig.store.getters["corehr/httpHeaders"]();
 	return {
 		...(config.headers ? config.headers : {}),
 		Authorization: httpHeaders.Authorization,
@@ -13,7 +14,7 @@ const headers = (config = {}) => {
 	};
 };
 const API = () => {
-	let httpHeaders = store.getters["httpHeaders"]();
+	let httpHeaders = Vue.prototype.$JSONLayoutConfig.store.getters["corehr/httpHeaders"]();
 	console.log(httpHeaders);
 	console.log(ENV_NOW);
 	return (httpHeaders.API || ENV_NOW.GATEWAY_API) + httpHeaders.appendUrl;
@@ -86,14 +87,14 @@ export function requestFullPath(type, url, config = {}) {
 				console.log("回调出错");
 			}
 		})
-			.catch((err) => {
-				logResult(undefined, err);
-				try {
-					reject(err);
-				} catch (e) {
-					console.log("回调出错");
-				}
-			});
+			 .catch((err) => {
+				 logResult(undefined, err);
+				 try {
+					 reject(err);
+				 } catch (e) {
+					 console.log("回调出错");
+				 }
+			 });
 	});
 }
 
@@ -116,14 +117,14 @@ export function fetch(url, params, config = {}) {
 				console.log("回调出错");
 			}
 		})
-			.catch((err) => {
-				logResult(undefined, err);
-				try {
-					reject(err);
-				} catch (e) {
-					console.log("回调出错");
-				}
-			});
+			 .catch((err) => {
+				 logResult(undefined, err);
+				 try {
+					 reject(err);
+				 } catch (e) {
+					 console.log("回调出错");
+				 }
+			 });
 	});
 }
 

@@ -1,4 +1,4 @@
-import Vue from "vue";
+import {fetch} from "@/service/myHttp";
 
 export function generateFormConfig(processConfig, payload) {
 	// console.log(processConfig);
@@ -11,7 +11,7 @@ export function generateFormConfig(processConfig, payload) {
 
 export async function getProcessConfigByRequest(processUrl, payload, localTemplate) {
 	if (processUrl) {
-		let processConfig = (await Vue.prototype.$JSONLayoutConfig.HTTP.GET(processUrl)).data;
+		let processConfig = (await fetch(processUrl)).data;
 		//使用本地layout
 		processConfig.formConfig = localTemplate;
 		payload.process = {...processConfig};
