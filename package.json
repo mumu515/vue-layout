@@ -1,6 +1,6 @@
 {
 	"name": "vue-json-layout",
-	"version": "1.0.3",
+	"version": "1.0.2",
 	"private": false,
 	"repository": {
 		"type": "git",
@@ -23,7 +23,8 @@
 		"lint": "eslint --ext .js,.vue src",
 		"build": "node build/build.js",
 		"build-pack": "webpack --config build/webpack.pack.conf.js",
-		"pub": "npm run build-pack && npm publish"
+		"pub": "npm run build-pack && npm publish",
+		"pub-patch": "npm run build-pack && npm version patch && npm publish"
 	},
 	"dependencies": {
 		"esprima": "^4.0.1",
