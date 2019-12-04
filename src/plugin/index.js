@@ -16,8 +16,8 @@ requireComponent.keys().forEach((fileName) => {
 let vueJsonLayout = {};
 vueJsonLayout.install = function(Vue, options = {}) {
 	console.log(options);
-	Vue.$JSONLayoutConfig = options;
-	Vue.$JSONLayoutConfig.HTTP = options.HTTP || {
+	Vue.prototype.$JSONLayoutConfig = options;
+	Vue.prototype.$JSONLayoutConfig.HTTP = options.HTTP || {
 		GET: fetch,
 		DELETE: mdelete,
 		POST: post,

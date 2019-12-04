@@ -69,7 +69,7 @@ export function requestFullPath(type, url, config = {}) {
 	return new Promise((resolve, reject) => {
 		const logResult = httpStartLog("get", url, config.params, config);
 		config.headers = headers(config);
-		Vue.$JSONLayoutConfig.request({
+		Vue.prototype.$JSONLayoutConfig.request({
 			url: url,
 			method: type,
 			baseURL: "",
@@ -100,7 +100,7 @@ export function fetch(url, params, config = {}) {
 		const logResult = httpStartLog("get", url, params, config);
 		config.params = config.params || params;
 		config.headers = headers(config);
-		Vue.$JSONLayoutConfig.request({
+		Vue.prototype.$JSONLayoutConfig.request({
 			url: API() + url,
 			method: "get",
 			...config
@@ -131,7 +131,7 @@ export function post(url, data, config = {}) {
 		const logResult = httpStartLog("post", url, data, config);
 		config.data = config.data || data;
 		config.headers = headers(config);
-		Vue.$JSONLayoutConfig.request({
+		Vue.prototype.$JSONLayoutConfig.request({
 			url: API() + url,
 			method: "post",
 			...config
@@ -169,7 +169,7 @@ export function post(url, data, config = {}) {
 export function patch(url, data) {
 	return new Promise((resolve, reject) => {
 		const logResult = httpStartLog("patch", url, data);
-		Vue.$JSONLayoutConfig.request({
+		Vue.prototype.$JSONLayoutConfig.request({
 			url: API() + url,
 			method: "patch",
 			headers: headers(),
@@ -210,7 +210,7 @@ export function put(url, data, config = {}) {
 		const logResult = httpStartLog("put", url, data);
 		config.data = config.data || data;
 		config.headers = headers(config);
-		Vue.$JSONLayoutConfig.request({
+		Vue.prototype.$JSONLayoutConfig.request({
 			url: API() + url,
 			method: "put",
 			...config
@@ -248,7 +248,7 @@ export function put(url, data, config = {}) {
 export function mdelete(url, data) {
 	return new Promise((resolve, reject) => {
 		const logResult = httpStartLog("patch", url, data);
-		Vue.$JSONLayoutConfig.request({
+		Vue.prototype.$JSONLayoutConfig.request({
 			url: API() + url,
 			method: "delete",
 			headers: headers(),

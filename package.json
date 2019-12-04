@@ -23,8 +23,7 @@
 		"lint": "eslint --ext .js,.vue src",
 		"build": "node build/build.js",
 		"build-pack": "webpack --config build/webpack.pack.conf.js",
-		"pub": "npm run build-pack && npm publish",
-		"pub-patch": "npm run build-pack && npm version patch && npm publish"
+		"pub": "npm run build-pack && npm publish"
 	},
 	"dependencies": {
 		"esprima": "^4.0.1",
