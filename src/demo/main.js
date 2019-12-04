@@ -1,15 +1,11 @@
 import Vue from "vue";
+import "@/plugin/json-layout";
+
 import App from "./App.vue";
-
-import ElementUI from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
-
-Vue.use(ElementUI);
-
-import components from "../../dist/vueLayout";
-
-Vue.use(components);
+import "@/plugin/element";
+import store from "@/store/index";
 
 new Vue({
+	store,
 	render: h => h(App)
 }).$mount("#app");

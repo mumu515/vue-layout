@@ -1,4 +1,7 @@
-import "../utils/typeJudge";
+import "@/utils/typeJudge";
+import "@/utils/jsAddFun";
+import localStorage from "@/utils/localstorage";
+import {fetch, mdelete, post, put} from "@/service/myHttp";
 
 let components = {};
 const requireComponent = require.context(
@@ -12,7 +15,16 @@ requireComponent.keys().forEach((fileName) => {
 });
 
 let VueLayout = {};
-VueLayout.install = function(Vue, options) {
+VueLayout.install = function(Vue, options = {}) {
+	console.log(options);
+	Vue.$JSONLayoutConfig = options;
+	Vue.$JSONLayoutConfig.HTTP = options.HTTP || {
+		GET: fetch,
+		DELETE: mdelete,
+		POST: post,
+		PUT: put
+	};
+	Vue._localStorage = localStorage;
 	Object.keys(components).forEach((key) => {
 		Vue.component(key, components[key]);
 	});

@@ -1,6 +1,6 @@
 {
-	"name": "vue-layout",
-	"version": "0.0.2",
+	"name": "vue-json-layout",
+	"version": "1.0.1",
 	"private": false,
 	"repository": {
 		"type": "git",
@@ -18,18 +18,22 @@
 	],
 	"description": "A Vue.js project",
 	"scripts": {
-		"dev": "npm run build-pack && webpack-dev-server --inline --progress --open --config build/webpack.dev.conf.js",
-		"start": "npm run dev",
+		"dev": " webpack-dev-server --inline --progress --open --config build/webpack.dev.conf.js",
+		"start": "npm run build-pack && npm run dev",
 		"lint": "eslint --ext .js,.vue src",
 		"build": "node build/build.js",
 		"build-pack": "webpack --config build/webpack.pack.conf.js",
-		"pub": "node run build-pack && npm publish"
+		"pub": "npm run build-pack && npm publish"
 	},
 	"dependencies": {
 		"esprima": "^4.0.1",
 		"jsonpath": "^1.0.2",
 		"vue": "^2.5.17",
-		"element-ui": "^2.13.0"
+		"element-ui": "^2.13.0",
+		"vuex": "^3.0.1",
+		"js-cookie": "2.2.0",
+		"axios": "0.17.1",
+		"es6-promise": "^4.2.4"
 	},
 	"peerDependencies": {},
 	"devDependencies": {

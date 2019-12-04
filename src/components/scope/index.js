@@ -1,4 +1,5 @@
 import Utils from "@/components/utils";
+import Vue from "vue";
 
 let getInits = (layout) => {
 	let inits = [];
@@ -156,10 +157,6 @@ const YScope = {//配合layout使用
 				scope: {
 					type: Object,
 					default: () => ({})
-				},
-				requestType: {
-					type: Object,
-					default: () => ({})
 				}
 			},
 			data() {
@@ -260,9 +257,13 @@ const YScope = {//配合layout使用
 							listeners.forEach(({objPath, listenerPath}) => {
 								Utils.setEvalData(config, objPath, Utils.getEvalResult(self.scope.data, listenerPath));
 							});
-							this.$emit("process", {
+							let processConfig = await this.$store.dispatch(config.storeActionName, {
 								processUrl: config.processUrl,
 								payload: config.payload
+							});
+							this.$router.push({
+								path: processConfig.formConfig.path,
+								query: {processUrl: config.processUrl}
 							});
 						} else if (action.type === "api") {
 							config = JSON.parse(JSON.stringify(action.config));
@@ -291,7 +292,7 @@ const YScope = {//配合layout使用
 				async apiRequest(apiConfig, resultScope) {
 					// console.log("apiRequest");
 					// console.log({apiConfig});
-					let response = await this.requestType[apiConfig.type](apiConfig.url, undefined, {
+					let response = await Vue.$JSONLayoutConfig.HTTP[apiConfig.type](apiConfig.url, undefined, {
 						params: apiConfig.params,
 						headers: apiConfig.headers,
 						data: apiConfig.data

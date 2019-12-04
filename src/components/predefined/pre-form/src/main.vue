@@ -80,7 +80,7 @@
 				this.$refs.preForm.resetFields();
 			}
 		},
-		render(h) {
+		render(creatElement) {
 
 			const createItemContentNode = (item) => {
 				switch (item.type) {
