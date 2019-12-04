@@ -14,8 +14,8 @@ requireComponent.keys().forEach((fileName) => {
 	components[componentConfig.default.name] = componentConfig.default;
 });
 
-let VueLayout = {};
-VueLayout.install = function(Vue, options = {}) {
+let vueJsonLayout = {};
+vueJsonLayout.install = function(Vue, options = {}) {
 	console.log(options);
 	Vue.$JSONLayoutConfig = options;
 	Vue.$JSONLayoutConfig.HTTP = options.HTTP || {
@@ -29,4 +29,4 @@ VueLayout.install = function(Vue, options = {}) {
 		Vue.component(key, components[key]);
 	});
 };
-export default VueLayout;
+export default vueJsonLayout;
