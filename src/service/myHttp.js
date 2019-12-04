@@ -14,6 +14,8 @@ const headers = (config = {}) => {
 };
 const API = () => {
 	let httpHeaders = store.getters["httpHeaders"]();
+	console.log(httpHeaders);
+	console.log(ENV_NOW);
 	return (httpHeaders.API || ENV_NOW.GATEWAY_API) + httpHeaders.appendUrl;
 };
 

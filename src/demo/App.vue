@@ -13,7 +13,7 @@
 				testScopes: [
 					{
 						scopeId: "1",
-						data: {}
+						data: {testData: {}}
 					}],
 				testLayout: {
 					scopeId: "1",
@@ -23,6 +23,14 @@
 						{
 							nodeType: "y-button",
 							innerHTML: "y-button"
+						},
+						{
+							nodeType: "y-select",
+							props: {
+								model: "{testData}",
+								prop: "type",
+								optionsPath: "ORGANIZATION.type"
+							}
 						}]
 				}
 			};

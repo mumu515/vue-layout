@@ -1,7 +1,7 @@
 const localStorage = {
 	fetch(key) {
 		let value = window.localStorage.getItem(key);
-		if (value !== "undefined" || value !== "null") {
+		if (value !== "undefined" && value !== "null") {
 			return JSON.parse(value || "{}");
 		} else {
 			return {};

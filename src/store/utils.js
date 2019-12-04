@@ -11,7 +11,7 @@ export function generateFormConfig(processConfig, payload) {
 
 export async function getProcessConfigByRequest(processUrl, payload, localTemplate) {
 	if (processUrl) {
-		let processConfig = (await Vue.prototype.$JSONLayoutConfig.HTTP.fetch(processUrl)).data;
+		let processConfig = (await Vue.prototype.$JSONLayoutConfig.HTTP.GET(processUrl)).data;
 		//使用本地layout
 		processConfig.formConfig = localTemplate;
 		payload.process = {...processConfig};
