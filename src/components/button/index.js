@@ -1,4 +1,4 @@
-import commonMixins from "@/components/mixins-common";
+import commonMixins from "@/components/utils/mixins-common";
 
 const YButton = {
   name: "YButton",
@@ -16,8 +16,8 @@ const YButton = {
     "loading", //	是否加载中状态	boolean	—	false
     "disabled", //	是否禁用状态	boolean	—	false
     "icon", //	图标类名	string	—	—
-    "autofocus", //	是否默认聚焦	boolean	—	false
-    "native-type" //	原生 type 属性	string	button / submit / reset	button
+    // "autofocus", //	是否默认聚焦	boolean	—	false
+    // "native-type" //	原生 type 属性	string	button / submit / reset	button
   ],
   render(h) {
     return <el-button

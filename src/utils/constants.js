@@ -6,7 +6,8 @@ export const CONSTANTS = {
       biz_tree: "/biz/tree/${objectCode}/${guid}", // 获取
       meta_codes: "/meta/codes",
       meta_object: "/meta/object/${objectCode}",
-      meta_Reload: "/meta/reload"
+      meta_Reload: "/meta/reload",
+			getAutoId: "/system/tools/getAutoId/${count}"
     },
     post: {
       biz_child: "/biz/${childObjectCode}/for/${parentObjectCode}", // 创建子对象实例

@@ -1,73 +1,75 @@
 <template>
-  <el-container direction="vertical">
-    <el-container>
-      <div class="container-left">
-        <el-card>
-          <el-form
-            label-position="top"
-            size="mini">
-            <el-form-item label="组件">
-              <y-component-list
-                :list="componentList"
-                groupName="main"></y-component-list>
-            </el-form-item>
-          </el-form>
-        </el-card>
-      </div>
-      <div class="container-middle">
-        <el-card>
-          <y-layout-item
-            :nodes="layoutResult"
-            @itemClick="itemClick"></y-layout-item>
-        </el-card>
-      </div>
-      <div class="container-right">
-        <el-card>
-          <div>{{currentSelect.label}}</div>
-          <el-form
-            label-position="top"
-            size="mini">
-            <el-form-item
-              v-for="(value,key) in currentSelect.props"
-              :key="key"
-              :label="value.label">
-              <el-select
-                v-if="value.type==='select'"
-                v-model="value.value">
-                <el-option
-                  v-for="(item,index) in value.options"
-                  :label="item.label"
-                  :value="item.value"></el-option>
-              </el-select>
-              <el-input
-                v-else-if="value.type==='text'"
-                v-model="value.value"></el-input>
-              <el-input-number
-                v-else-if="value.type==='number'"
-                v-model="value.value"></el-input-number>
-              <el-switch
-                v-else-if="value.type==='switch'"
-                v-model="value.value">
-              </el-switch>
-              <el-radio-group
-                v-else-if="value.type==='radio'"
-                v-model="value.value">
-                <el-radio
-                  v-for="(item,index) in value.options"
-                  :label="item.value">{{item.label}}
-                </el-radio>
-              </el-radio-group>
-            </el-form-item>
-          </el-form>
-        </el-card>
-      </div>
-    </el-container>
-    <el-row>
-      <el-card>
-        <el-button @click="submitResult">提交</el-button>
-      </el-card>
-    </el-row>
-  </el-container>
+	<el-container direction="vertical">
+		<el-container>
+			<div class="container-left">
+				<el-card>
+					<el-form
+							label-position="top"
+							size="mini">
+						<el-form-item label="组件">
+							<y-component-list
+									:list="componentList"
+									groupName="main"></y-component-list>
+						</el-form-item>
+					</el-form>
+				</el-card>
+			</div>
+			<div class="container-middle">
+				<el-card>
+					<y-layout-item
+							:nodes="layoutResult"
+							@itemClick="itemClick"></y-layout-item>
+				</el-card>
+			</div>
+			<div class="container-right">
+				<el-card>
+					<div>{{currentSelect.label}}</div>
+					<el-form
+							label-position="top"
+							size="mini">
+						<el-form-item
+								v-for="(value,key) in currentSelect.props"
+								:key="key"
+								:label="value.label">
+							<el-select
+									v-if="value.type==='select'"
+									v-model="value.value">
+								<el-option
+										v-for="(item,index) in value.options"
+										:key="index"
+										:label="item.label"
+										:value="item.value"></el-option>
+							</el-select>
+							<el-input
+									v-else-if="value.type==='text'"
+									v-model="value.value"></el-input>
+							<el-input-number
+									v-else-if="value.type==='number'"
+									v-model="value.value"></el-input-number>
+							<el-switch
+									v-else-if="value.type==='switch'"
+									v-model="value.value">
+							</el-switch>
+							<el-radio-group
+									v-else-if="value.type==='radio'"
+									v-model="value.value">
+								<el-radio
+										v-for="(item,index) in value.options"
+										:key="index"
+										:label="item.value">{{item.label}}
+								</el-radio>
+							</el-radio-group>
+						</el-form-item>
+					</el-form>
+				</el-card>
+			</div>
+		</el-container>
+		<el-row>
+			<el-card>
+				<el-button @click="submitResult">提交</el-button>
+			</el-card>
+		</el-row>
+	</el-container>
 </template>
 <script>
 	import YLayoutItem from "./layout-item";
@@ -265,28 +267,28 @@
 	};
 </script>
 <style
-  lang="scss"
-  type="text/scss"
-  scoped>
-  .container-left, .container-right {
-    flex: none;
-    width: 200px;
+		lang="scss"
+		type="text/scss"
+		scoped>
+	.container-left, .container-right {
+		flex: none;
+		width: 200px;
 
-    .el-card {
-      height: 100%;
-    }
+		.el-card {
+			height: 100%;
+		}
 
-  }
+	}
 
-  .container-middle {
-    flex: auto;
+	.container-middle {
+		flex: auto;
 
-    .el-card {
-      margin: 0 5px;
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: stretch;
-      min-height: 400px;
-    }
-  }
+		.el-card {
+			margin: 0 5px;
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: stretch;
+			min-height: 400px;
+		}
+	}
 </style>

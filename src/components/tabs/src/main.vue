@@ -11,7 +11,7 @@
 </template>
 <script type="text/babel">
 	import Utils from "@/components/utils";
-	import commonMixins from "@/components/mixins-common";
+	import commonMixins from "@/components/utils/mixins-common";
 
 	export default {
 		name: "YTabs",
@@ -32,8 +32,8 @@
 				return this.$refs.tabs.currentName;
 			}, {
 				handler(n, o) {
-					console.log(o);
-					console.log(n);
+					// console.log(o);
+					// console.log(n);
 					this.directionClass = n > o ? "direction-next" : "direction-pre";
 				},
 				immediate: true
@@ -41,8 +41,8 @@
 		},
 		methods: {
 			tabClick(selected) {
-				console.log(selected);
-				console.log(this.$refs.tabs.currentName);
+				// console.log(selected);
+				// console.log(this.$refs.tabs.currentName);
 			}
 		}
 	};

@@ -13,7 +13,7 @@
 </template>
 <script type="text/babel">
 	import Utils from "@/components/utils";
-	import commonMixins from "@/components/mixins-common";
+	import commonMixins from "@/components/utils/mixins-common";
 
 	export default {
 		name: "YCarousel",

@@ -1,5 +1,5 @@
 <script>
-	import commonMixins from "@/components/mixins-common";
+	import commonMixins from "@/components/utils/mixins-common";
 
 	export default {
 		name: "YPagination",

@@ -1,52 +1,28 @@
-import {getProcessConfigByRequest} from "@/store/utils";
-
-let templates = {};
-const requireTemplates = require.context("./", true, /.*(\/).+(\.js)$/);
-requireTemplates.keys().forEach((fileName) => {
-  const template = requireTemplates(fileName);
-  if (template.default && !fileName.match(/.*index\.js/)) {
-    let dirName = fileName.match(/\.\/(.*)\/[^\/]*?\.js/)[1];
-    templates[dirName] = templates[dirName] || {};
-    let objectCode = fileName.match(/([^\/]*)\.js/)[1].toUpperCase();
-    templates[dirName][objectCode] = template.default;
-  }
-});
+import {getLayout} from "@/store/utils";
+import {getCookieByQuery} from "@/utils/auth";
+import {getLocalLayoutCodes, getLocalTemplates, getLocalTemplatesByCode} from "../utils";
 
 export const layout = {
-  namespaced: true,
-  state: {
-    templates
-  },
-  // modules: {
-  //   add: {
-  //     namespaced: true,
-  //     state: {processCache: {}}
-  //   },
-  //   edit: {
-  //     namespaced: true,
-  //     state: {processCache: {}}
-  //   },
-  //   view: {
-  //     namespaced: true,
-  //     state: {processCache: {}}
-  //   },
-  //   list: {
-  //     namespaced: true,
-  //     state: {processCache: {}}
-  //   },
-  //   tree: {
-  //     namespaced: true,
-  //     state: {processCache: {}}
-  //   }
-  // },
-  actions: {
-    async getProcessConfig({state, getters}, {processUrl = "", payload = {}}) {
-      let {objectCode, pageType} = payload, pageTypeAppend = "";
-      [pageType, pageTypeAppend] = pageType.split("_");
-      pageTypeAppend = (pageTypeAppend || "").toUpperCase();
-      let key = objectCode + "_" + processUrl;
-      return (await getProcessConfigByRequest(processUrl, payload, state.templates[pageType][pageTypeAppend || objectCode]()));
-    }
-  }
+	namespaced: true,
+	state: {
+		templates: getLocalTemplates(),
+		layoutCodes: getLocalLayoutCodes()
+	},
+	getters: {
+		template: (state) => getLocalTemplatesByCode
+	},
+	actions: {
+		async getProcessConfig({state, getters}, {layoutCode, configParams}) {
+			let {payload = {}} = configParams;
+			let {pageName = ""} = payload;
+			
+			if (pageName.indexOf("CorehrMeta") >= 0) {
+			} else if (pageName.indexOf("CorehrPersonalInfo") >= 0) {
+				payload.empId = getCookieByQuery("empId");	//todo
+			}
+			return (await getLayout(payload, layoutCode));
+			
+		}
+	}
 };
 
