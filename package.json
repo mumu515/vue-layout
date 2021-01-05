@@ -43,7 +43,7 @@
 	},
 	"dependencies": {
 		"@balkangraph/orgchart.js": "^5.2.3",
-		"axios": "0.17.1",
+		"axios": "0.21.1",
 		"axios-retry": "^3.1.2",
 		"element-ui": "^2.13.0",
 		"es6-promise": "^4.2.4",
